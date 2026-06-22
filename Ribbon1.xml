@@ -18,6 +18,9 @@
           <button id="btnAlertTypes" label="Alert Types" size="large"
                   imageMso="Comment" onAction="OnEditAlertTypes"
                   screentip="Create or edit alert types - the text to send and the Pushover sound to use."/>
+          <button id="btnCustomSounds" label="Custom Sounds" size="large"
+                  imageMso="SoundEdit" onAction="OnEditCustomSounds"
+                  screentip="Add or remove the names of custom sounds you've uploaded to your Pushover app."/>
           <button id="btnSettings" label="Pushover Settings" size="large"
                   imageMso="FileOpen" onAction="OnEditSettings"
                   screentip="Enter your Pushover API token and user key, and pick the default alert type."/>

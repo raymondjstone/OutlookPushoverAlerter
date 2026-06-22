@@ -75,6 +75,7 @@ never spams you with old messages).
 | **Watch Domain** | Add the selected sender's whole **domain** to the watch list |
 | **Watch List** | Add/remove watched senders and assign each one an alert type |
 | **Alert Types** | Create/edit alert types (name, sound, text); **Test** a type live |
+| **Custom Sounds** | Add/remove the names of custom sounds uploaded to your Pushover app; **Test** one live |
 | **Pushover Settings** | Enter your API token + user key, pick the default type, send a test |
 | **Edit Files** | Open the data files (`watchlist`, `alerttypes`, `customsounds`, `settings`) in Notepad |
 | **Send Test** | Fire a test notification to confirm credentials work |
@@ -126,8 +127,9 @@ sound gets a **name**, and Pushover plays it when you pass that name as the
 To use one here:
 
 1. Upload the sound on the Pushover website and note the **name** it's given.
-2. In Outlook → **Alert Types**, type that name into the **Sound** box (the box
-   is an editable dropdown), then **Save**.
+2. In Outlook → **Custom Sounds**, type that name and **Add** (use **Test** to
+   confirm it plays). Alternatively, type the name straight into the **Sound**
+   box on the **Alert Types** dialog (the box is an editable dropdown) and **Save**.
 3. The name is remembered in `customsounds.txt` and appears in the **Sound**
    dropdown for every alert type thereafter.
 

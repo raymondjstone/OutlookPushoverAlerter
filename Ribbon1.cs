@@ -72,6 +72,17 @@ namespace OutlookPushoverAlerter
             catch (Exception ex) { ShowError(ex); }
         }
 
+        public void OnEditCustomSounds(Office.IRibbonControl c)
+        {
+            try
+            {
+                Alerter.EnsureListFiles();
+                using (var form = new CustomSoundsForm(Alerter))
+                    form.ShowDialog();
+            }
+            catch (Exception ex) { ShowError(ex); }
+        }
+
         public void OnEditSettings(Office.IRibbonControl c)
         {
             try
