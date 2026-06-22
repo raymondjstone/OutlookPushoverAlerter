@@ -91,6 +91,7 @@ namespace OutlookPushoverAlerter
                 Alerter.SaveSettings(); // make sure settings.txt exists to open
                 Process.Start("notepad.exe", "\"" + Alerter.WatchListFile + "\"");
                 Process.Start("notepad.exe", "\"" + Alerter.AlertTypesFile + "\"");
+                Process.Start("notepad.exe", "\"" + Alerter.CustomSoundsFile + "\"");
                 Process.Start("notepad.exe", "\"" + Alerter.SettingsFile + "\"");
             }
             catch (Exception ex) { ShowError(ex); }

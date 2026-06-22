@@ -22,6 +22,7 @@ namespace OutlookPushoverAlerter
         private TextBox _text;
         private Button _newBtn;
         private Button _save;
+        private Button _test;
         private Button _remove;
         private Button _close;
 
@@ -97,11 +98,14 @@ namespace OutlookPushoverAlerter
             _remove.Click += (s, e) => RemoveSelected();
             _newBtn = new Button { Text = "New", AutoSize = true };
             _newBtn.Click += (s, e) => ClearEditor();
+            _test = new Button { Text = "Test", AutoSize = true };
+            _test.Click += (s, e) => TestCurrent();
             _save = new Button { Text = "Save", AutoSize = true };
             _save.Click += (s, e) => SaveCurrent();
             buttons.Controls.Add(_close);
             buttons.Controls.Add(_remove);
             buttons.Controls.Add(_newBtn);
+            buttons.Controls.Add(_test);
             buttons.Controls.Add(_save);
 
             editor.Controls.Add(new Label { Text = "Name:", AutoSize = true, Anchor = AnchorStyles.Left, Margin = new Padding(0, 6, 8, 0) }, 0, 0);
@@ -198,6 +202,38 @@ namespace OutlookPushoverAlerter
             RefreshList();
             int idx = _list.Items.IndexOf(name);
             if (idx >= 0) _list.SelectedIndex = idx;
+        }
+
+        /// <summary>
+        /// Sends a real Pushover notification using whatever is currently in the
+        /// editor, so a custom sound name can be confirmed against your app/account.
+        /// </summary>
+        private void TestCurrent()
+        {
+            string name = (_name.Text ?? "").Trim();
+            if (name.Length == 0) name = "Outlook Alert";
+            string sound = PushoverAlerter.NormalizeSoundName(_sound.Text ?? "");
+            string text = _text.Text ?? "";
+
+            var type = new AlertType(name, sound, text);
+
+            Cursor.Current = Cursors.WaitCursor;
+            string err;
+            bool ok;
+            try { ok = _alerter.SendTest(type, out err); }
+            finally { Cursor.Current = Cursors.Default; }
+
+            if (ok)
+                MessageBox.Show(this,
+                    "Test notification sent." +
+                    (sound.Length > 0 ? "\r\n\r\nSound: " + sound : "") +
+                    "\r\n\r\nIf you don't hear this sound on your device, the name may not match a" +
+                    " sound uploaded to your Pushover app, or your device is set to override it.",
+                    "Alert Types", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show(this,
+                    "Test failed:\r\n\r\n" + err,
+                    "Alert Types", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void RemoveSelected()
