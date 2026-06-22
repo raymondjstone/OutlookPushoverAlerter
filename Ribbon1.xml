@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui" onLoad="Ribbon_Load">
+  <ribbon>
+    <tabs>
+      <tab id="tabPushover" label="Pushover Alerts">
+        <group id="grpWatchSelected" label="Watch Selected">
+          <button id="btnWatchSender" label="Watch Sender" size="large"
+                  imageMso="ReviewAcceptChange" onAction="OnWatchSender"
+                  screentip="Add the selected message's sender address to the watch list (uses the default alert type)."/>
+          <button id="btnWatchDomain" label="Watch Domain" size="large"
+                  imageMso="ReviewAcceptChange" onAction="OnWatchDomain"
+                  screentip="Add the selected sender's whole domain to the watch list (uses the default alert type)."/>
+        </group>
+        <group id="grpManage" label="Manage">
+          <button id="btnWatchList" label="Watch List" size="large"
+                  imageMso="TableInsertDialog" onAction="OnEditWatchList"
+                  screentip="Add or remove watched addresses / domains and choose which alert type each one fires."/>
+          <button id="btnAlertTypes" label="Alert Types" size="large"
+                  imageMso="Comment" onAction="OnEditAlertTypes"
+                  screentip="Create or edit alert types - the text to send and the Pushover sound to use."/>
+          <button id="btnSettings" label="Pushover Settings" size="large"
+                  imageMso="FileOpen" onAction="OnEditSettings"
+                  screentip="Enter your Pushover API token and user key, and pick the default alert type."/>
+          <button id="btnEditFiles" label="Edit Files" size="large"
+                  imageMso="FileOpen" onAction="OnEditFiles"
+                  screentip="Open watchlist.txt, alerttypes.txt and settings.txt in Notepad."/>
+        </group>
+        <group id="grpActions" label="Actions">
+          <button id="btnTest" label="Send Test" size="large"
+                  imageMso="ReviewAcceptChange" onAction="OnTest"
+                  screentip="Send a test Pushover notification to confirm your credentials work."/>
+          <button id="btnRescan" label="Rescan Unread" size="large"
+                  imageMso="RefreshAll" onAction="OnRescan"
+                  screentip="Re-check unread Inbox mail and alert on any from watched senders."/>
+        </group>
+        <group id="grpOptions" label="Options">
+          <toggleButton id="btnEnabled" size="large"
+                  imageMso="ReviewRejectChange" onAction="OnToggleEnabled"
+                  getPressed="GetEnabledPressed" getLabel="GetEnabledLabel"
+                  screentip="Master switch for automatic alerting. Turn off to stop sending push notifications without losing your lists."/>
+          <toggleButton id="btnConfirmations" size="large"
+                  imageMso="Comment" onAction="OnToggleConfirmations"
+                  getPressed="GetConfirmationsPressed" getLabel="GetConfirmationsLabel"
+                  screentip="Show a pop-up confirmation for manual actions like Send Test and adding to the watch list."/>
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>
